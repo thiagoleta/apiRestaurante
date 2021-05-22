@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { CardapioDeliveryComponent } from './cardapio-delivery/cardapio-delivery.component';
@@ -7,7 +8,8 @@ import { CestaDeComprasComponent } from './cesta-de-compras/cesta-de-compras.com
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { LoginClienteComponent } from './login-cliente/login-cliente.component';
 import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.component';
-import {AppRoutingModule} from './app.rountig';
+
+import { AppRoutingModule } from './app.rountig';
 
 @NgModule({
   declarations: [
@@ -16,13 +18,16 @@ import {AppRoutingModule} from './app.rountig';
     CestaDeComprasComponent,
     CadastroClienteComponent,
     LoginClienteComponent,
-    FinalizarPedidoComponent,
-    AppRoutingModule
+    FinalizarPedidoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
