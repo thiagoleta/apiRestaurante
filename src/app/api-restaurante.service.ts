@@ -1,9 +1,32 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiRestauranteService {
 
-  constructor() { }
+  endpoint = environment.apiUrl + "/api"
+
+  //injeção de dependencia para o HttpClient
+  constructor(private httpClient: HttpClient) { }
+
+  getDadosRestaurante() {
+    return this.httpClient.get(this.endpoint + "/restaurante");
+  }
+
+  getCardapio() {
+    return this.httpClient.get(this.endpoint + "/cardapio");
+  }
+
+  getItemCardapio(id) {
+    return this.httpClient.get(this.endpoint + "/cardapio/" + id);
+  }
+
+  getCategorias() {
+    return this.httpClient.get(this.endpoint + "/categorias");
+  }
 }
+
+
