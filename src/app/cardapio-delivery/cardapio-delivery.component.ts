@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { ApiRestauranteService } from '../api-restaurante.service';
 
 @Component({
   selector: 'app-cardapio-delivery',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CardapioDeliveryComponent implements OnInit {
 
-  constructor() { }
+  cardapio = [];
+  url = environment.apiUrl;
+
+  constructor(private apiRestaurante: ApiRestauranteService) { }
 
   ngOnInit(): void {
+    this.apiRestaurante.getCardapio()
+      .subscribe(
+        (data: any[]) => {
+          this.cardapio = data;
+        },
+        e => {
+          console.log(e);
+        }
+      );
   }
 
 }
+
+

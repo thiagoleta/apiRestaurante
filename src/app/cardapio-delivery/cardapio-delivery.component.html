@@ -1,1 +1,22 @@
-<p>cardapio-delivery works!</p>
+<div class="card mb-2" *ngFor="let item of cardapio">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="{{url}}{{item.foto}}" class="img-fluid" />
+            </div>
+            <div class="col-md-8">
+                <h5>{{item.nome}}</h5>
+                <p>{{item.descricao}}</p>
+                <h6><span class="badge bg-secondary">{{item.categoria.nome}}</span></h6>
+            </div>
+            <div class="col-md-2">
+                <h5>{{item.preco}}</h5>
+                <div>
+                    <a href="#" class="btn btn-success">Comprar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
