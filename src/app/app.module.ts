@@ -7,6 +7,7 @@ import { CestaDeComprasComponent } from './cesta-de-compras/cesta-de-compras.com
 import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.component';
 import { LoginClienteComponent } from './login-cliente/login-cliente.component';
 import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.component';
+import {AppRoutingModule} from './app.rountig';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.co
     CestaDeComprasComponent,
     CadastroClienteComponent,
     LoginClienteComponent,
-    FinalizarPedidoComponent
+    FinalizarPedidoComponent,
+    AppRoutingModule
   ],
   imports: [
     BrowserModule
