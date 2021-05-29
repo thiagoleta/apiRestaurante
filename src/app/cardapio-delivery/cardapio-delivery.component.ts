@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ApiRestauranteService } from '../api-restaurante.service';
+import * as helper from '../_helpers/cesta-compras.helper';
 
 @Component({
   selector: 'app-cardapio-delivery',
@@ -10,6 +11,13 @@ import { ApiRestauranteService } from '../api-restaurante.service';
 export class CardapioDeliveryComponent implements OnInit {
 
   cardapio = [];
+  produto = {
+    id: '', foto : '', nome : '', descricao : '', preco : '', precoDecimal : 0, 
+    categoria : { id : '', nome : '' }
+  };
+
+  mensagem:string;
+
   url = environment.apiUrl;
 
   constructor(private apiRestaurante: ApiRestauranteService) { }
@@ -26,6 +34,22 @@ export class CardapioDeliveryComponent implements OnInit {
       );
   }
 
+  obterItem(item) : void {
+    this.produto = item;
+  }
+
+  adicionarItem(produto) : void {
+    //adicionar na cesta de compras
+    helper.adicionarItem(produto);
+    //exibir mensagem
+    this.mensagem = `Item ${produto.nome}, adicionado na cesta de compras com sucesso.`;
+  }
+
+  fecharMensagem() : void {
+    this.mensagem = "";
+  }
+
 }
+
 
 

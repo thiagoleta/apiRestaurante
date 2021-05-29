@@ -1,1 +1,49 @@
-<p>cesta-de-compras works!</p>
+<div>
+    <h5>Minha cesta de compras</h5>
+    <hr/>
+
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nome do Item</th>
+                <th class="text-end">Preço</th>
+                <th class="text-end">Quantidade</th>
+                <th class="text-end">Total</th>
+                <th class="text-center">Operações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of dados.itens">
+                <td>
+                    <img src="{{url}}{{item.foto}}" style="width: 50px;"/>
+                </td>
+                <td>{{item.nome}}</td>
+                <td class="text-end">{{item.precoDecimal | currency : 'R$'}}</td>
+                <td class="text-end">{{item.quantidade}}</td>
+                <td class="text-end">{{(item.precoDecimal * item.quantidade) | currency : 'R$'}}</td>
+                <td class="text-center">
+                    <button class="btn btn-outline-primary btn-sm"
+                        (click)="adicionarItem(item)">
+                        +
+                    </button>
+                    &nbsp;
+                    <button class="btn btn-outline-danger btn-sm"
+                        (click)="removerItem(item)">
+                        -
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <td colspan="4"></td>
+            <td class="text-end">Total: <strong>{{dados.total | currency : 'R$'}}</strong></td>
+            <td class="text-center">
+               
+            </td>
+        </tfoot>
+    </table>
+
+</div>
+
+
