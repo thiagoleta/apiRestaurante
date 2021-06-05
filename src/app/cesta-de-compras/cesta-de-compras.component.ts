@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class CestaDeComprasComponent implements OnInit {
 
   //atributos..
-  dados = { itens: [], total: 0 };
+  dados = { itens: [], total: 0 };  
   url = environment.apiUrl;
 
   constructor() { }

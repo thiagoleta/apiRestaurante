@@ -27,6 +27,14 @@ export class ApiRestauranteService {
   getCategorias() {
     return this.httpClient.get(this.endpoint + "/categorias");
   }
+
+  postCliente(cliente) {
+    return this.httpClient.post(this.endpoint + "/cliente", cliente);
+  }
+
+  postLogin(cliente) {
+    return this.httpClient.post(this.endpoint + "/login", cliente);
+  }
 }
 
 

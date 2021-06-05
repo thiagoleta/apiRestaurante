@@ -11,18 +11,23 @@ import * as helper from '../_helpers/cesta-compras.helper';
 export class CardapioDeliveryComponent implements OnInit {
 
   cardapio = [];
+  categorias = [];
+
   produto = {
-    id: '', foto : '', nome : '', descricao : '', preco : '', precoDecimal : 0, 
-    categoria : { id : '', nome : '' }
+    id: '', foto: '', nome: '', descricao: '', preco: '', precoDecimal: 0,
+    categoria: { id: '', nome: '' }
   };
 
-  mensagem:string;
+  mensagem: string;
 
   url = environment.apiUrl;
+
+  page = 1; //guardar a paginação..
 
   constructor(private apiRestaurante: ApiRestauranteService) { }
 
   ngOnInit(): void {
+
     this.apiRestaurante.getCardapio()
       .subscribe(
         (data: any[]) => {
@@ -32,24 +37,38 @@ export class CardapioDeliveryComponent implements OnInit {
           console.log(e);
         }
       );
+
+    this.apiRestaurante.getCategorias()
+      .subscribe(
+        (data: any[]) => {
+          this.categorias = data;
+        },
+        e => {
+          console.log(e);
+        }
+      );
   }
 
-  obterItem(item) : void {
+  obterItem(item): void {
     this.produto = item;
   }
 
-  adicionarItem(produto) : void {
+  adicionarItem(produto): void {
     //adicionar na cesta de compras
     helper.adicionarItem(produto);
     //exibir mensagem
     this.mensagem = `Item ${produto.nome}, adicionado na cesta de compras com sucesso.`;
   }
 
-  fecharMensagem() : void {
+  fecharMensagem(): void {
     this.mensagem = "";
   }
 
-}
+  //evento para realizar a paginação
+  handlePageChange(event): void {
+    this.page = event;
+  }
 
+}
 
 

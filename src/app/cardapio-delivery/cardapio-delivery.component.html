@@ -1,9 +1,30 @@
 <div *ngIf="mensagem" class="alert alert-success alert-dismissible fade show" role="alert">
     <strong>{{mensagem}}</strong>
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
+    <button type="button" class="btn-close" (click)="fecharMensagem()" aria-label="Close"></button>
+</div>
 
-<div class="card mb-2" *ngFor="let item of cardapio">
+<div class="card mb-2">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-8">
+                <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Página anterior"
+                    nextLabel="Próxima página">
+                </pagination-controls>
+            </div>
+            <div class="col-md-4">
+                <select class="form-select">
+                    <option class="">Selecione a categoria</option>
+                    <option *ngFor="let item of categorias" value="{{item.id}}">
+                        {{item.nome | uppercase}}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card mb-2"
+    *ngFor="let item of cardapio | paginate : { itemsPerPage : 3, currentPage : page, totalItems : cardapio.length }">
     <div class="card-body">
         <div class="row">
             <div class="col-md-2">
@@ -17,9 +38,7 @@
             <div class="col-md-2">
                 <h5>{{item.preco}}</h5>
                 <div>
-                    <a href="#" class="btn btn-success" 
-                        data-bs-target="#modal_produto"
-                        data-bs-toggle="modal"
+                    <a href="#" class="btn btn-success" data-bs-target="#modal_produto" data-bs-toggle="modal"
                         (click)="obterItem(item)">
                         Comprar
                     </a>
@@ -44,17 +63,16 @@
                         <p>
                             {{produto.descricao}}
                         </p>
-                        <h3>{{produto.preco}}</h3>                        
+                        <h3>{{produto.preco}}</h3>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
-                    (click)="adicionarItem(produto)">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" (click)="adicionarItem(produto)">
                     Adicionar ao Pedido
                 </button>
-              </div>
+            </div>
         </div>
     </div>
 </div>

@@ -9,7 +9,10 @@ import { CadastroClienteComponent } from './cadastro-cliente/cadastro-cliente.co
 import { LoginClienteComponent } from './login-cliente/login-cliente.component';
 import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.component';
 
+
 import { AppRoutingModule } from './app.rountig';
+import {AppFormsModule} from './app.forms';
+import {AppPaginationModule} from './app.pagination'
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { AppRoutingModule } from './app.rountig';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    AppFormsModule,
+    AppPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
