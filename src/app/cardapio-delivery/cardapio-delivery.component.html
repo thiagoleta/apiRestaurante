@@ -12,8 +12,8 @@
                 </pagination-controls>
             </div>
             <div class="col-md-4">
-                <select class="form-select">
-                    <option class="">Selecione a categoria</option>
+                <select class="form-select" (change)="filtrarCardapio($event)">
+                    <option value="0">TODOS OS PRODUTOS</option>
                     <option *ngFor="let item of categorias" value="{{item.id}}">
                         {{item.nome | uppercase}}
                     </option>
@@ -76,3 +76,4 @@
         </div>
     </div>
 </div>
+

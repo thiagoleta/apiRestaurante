@@ -1,1 +1,26 @@
-<p>login-cliente works!</p>
+<div class="card">
+    <div class="card-header">
+        <h5>Acessar conta de cliente</h5>
+    </div>
+    <div class="card-body">
+
+        <form #formLogin="ngForm">
+
+            <div class="mt-3">
+                <label>Email de Acesso:</label>
+                <input type="text" class="form-control" placeholder="Ex: joaosilva@gmail.com" name="email" ngModel />
+            </div>
+
+            <div class="mt-3">
+                <label>Senha de Acesso:</label>
+                <input type="text" class="form-control" placeholder="Digite aqui" name="senha" ngModel />
+            </div>
+
+            <div class="mt-3">
+                <input type="submit" value="Acessar Conta" class="btn btn-success" />
+            </div>
+
+        </form>
+
+    </div>
+</div>

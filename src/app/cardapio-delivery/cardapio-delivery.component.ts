@@ -27,7 +27,11 @@ export class CardapioDeliveryComponent implements OnInit {
   constructor(private apiRestaurante: ApiRestauranteService) { }
 
   ngOnInit(): void {
+    this.consultarCardapio();
+    this.consultarCategorias();
+  }
 
+  consultarCardapio(): void {
     this.apiRestaurante.getCardapio()
       .subscribe(
         (data: any[]) => {
@@ -37,7 +41,9 @@ export class CardapioDeliveryComponent implements OnInit {
           console.log(e);
         }
       );
+  }
 
+  consultarCategorias(): void {
     this.apiRestaurante.getCategorias()
       .subscribe(
         (data: any[]) => {
@@ -60,6 +66,26 @@ export class CardapioDeliveryComponent implements OnInit {
     this.mensagem = `Item ${produto.nome}, adicionado na cesta de compras com sucesso.`;
   }
 
+  filtrarCardapio(event): void {
+
+    var idCategoria = event.target.value;
+
+    if (idCategoria != "0") {
+      this.apiRestaurante.getCardapioPorCategoria(idCategoria)
+        .subscribe(
+          (data: any[]) => {
+            this.cardapio = data;
+          },
+          e => {
+            console.log(e);
+          }
+        );
+    }
+    else {
+      this.consultarCardapio();
+    }
+  }
+
   fecharMensagem(): void {
     this.mensagem = "";
   }
@@ -70,5 +96,3 @@ export class CardapioDeliveryComponent implements OnInit {
   }
 
 }
-
-

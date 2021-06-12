@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
@@ -20,6 +21,10 @@ export class ApiRestauranteService {
     return this.httpClient.get(this.endpoint + "/cardapio");
   }
 
+  getCardapioPorCategoria(idCategoria) {
+    return this.httpClient.get(this.endpoint + "/cardapio/" + idCategoria);
+  }
+
   getItemCardapio(id) {
     return this.httpClient.get(this.endpoint + "/cardapio/" + id);
   }
@@ -36,5 +41,3 @@ export class ApiRestauranteService {
     return this.httpClient.post(this.endpoint + "/login", cliente);
   }
 }
-
-

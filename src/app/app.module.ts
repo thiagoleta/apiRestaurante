@@ -12,7 +12,8 @@ import { FinalizarPedidoComponent } from './finalizar-pedido/finalizar-pedido.co
 
 import { AppRoutingModule } from './app.rountig';
 import {AppFormsModule} from './app.forms';
-import {AppPaginationModule} from './app.pagination'
+import {AppPaginationModule} from './app.pagination';
+import{AppMaskModule} from './app.mask';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import {AppPaginationModule} from './app.pagination'
     AppRoutingModule,
     HttpClientModule,
     AppFormsModule,
-    AppPaginationModule
+    AppPaginationModule,
+    AppMaskModule
   ],
   providers: [],
   bootstrap: [AppComponent]
