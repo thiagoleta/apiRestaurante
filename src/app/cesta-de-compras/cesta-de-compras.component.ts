@@ -10,13 +10,19 @@ import { environment } from '../../environments/environment';
 export class CestaDeComprasComponent implements OnInit {
 
   //atributos..
-  dados = { itens: [], total: 0 };  
+  dados = { itens: [], total: 0 };
   url = environment.apiUrl;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.dados = helper.obterItens();
+
+    if (helper.obterItens() != null) {
+      this.dados = helper.obterItens();
+    }
+    else {
+      this.dados = { itens: [], total: 0 };
+    }
   }
 
   adicionarItem(item): void {
@@ -30,6 +36,13 @@ export class CestaDeComprasComponent implements OnInit {
     //removendo na cesta de compras..
     helper.removerItem(item);
     //recarregar o conteudo da cesta de compras..
+    this.ngOnInit();
+  }
+
+  apagar(): void {
+    //apagar todo o conteudo da cesta de compras
+    helper.removerItens();
+    //recarregar o conteudo da página..
     this.ngOnInit();
   }
 

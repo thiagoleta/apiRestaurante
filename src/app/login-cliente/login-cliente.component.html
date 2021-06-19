@@ -1,19 +1,30 @@
+<div *ngIf="mensagem_erro" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{mensagem_erro}}</strong>
+    <button type="button" class="btn-close" (click)="fecharMensagens()" aria-label="Close"></button>
+</div>
+
 <div class="card">
     <div class="card-header">
         <h5>Acessar conta de cliente</h5>
     </div>
     <div class="card-body">
 
-        <form #formLogin="ngForm">
+        <form #formLogin="ngForm" (submit)="autenticarCliente(formLogin)">
 
             <div class="mt-3">
                 <label>Email de Acesso:</label>
                 <input type="text" class="form-control" placeholder="Ex: joaosilva@gmail.com" name="email" ngModel />
+                <div *ngFor="let item of erros.Email" class="text-danger">
+                    {{item}}
+                </div>
             </div>
 
             <div class="mt-3">
                 <label>Senha de Acesso:</label>
-                <input type="text" class="form-control" placeholder="Digite aqui" name="senha" ngModel />
+                <input type="password" class="form-control" placeholder="Digite aqui" name="senha" ngModel />
+                <div *ngFor="let item of erros.Senha" class="text-danger">
+                    {{item}}
+                </div>
             </div>
 
             <div class="mt-3">
@@ -24,3 +35,4 @@
 
     </div>
 </div>
+

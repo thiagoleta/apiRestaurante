@@ -84,7 +84,19 @@ export const removerItem = (produto) => {
 export const obterItens = () => {
     //obter os dados da localstorage
     var result = localStorage.getItem(CESTA_DE_COMPRAS);
-    //retornando os dados em JSON..
-    return JSON.parse(result);
+    
+    if(result != null){
+        //retornando os dados em JSON..
+        return JSON.parse(result);
+    }
+
+    return null;
 }
 
+//função para apagar todos os itens do carrinho
+export const removerItens = () => {
+    //verificar se o usuario deseja realmente excluir todos os itens
+    if(window.confirm('Deseja realmente excluir todos os itens?')){
+        localStorage.removeItem(CESTA_DE_COMPRAS);
+    }
+}

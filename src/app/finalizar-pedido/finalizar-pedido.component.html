@@ -10,7 +10,22 @@
                     <h6>Dados do Cliente</h6>
                 </div>
                 <div class="card-body">
-                    (...)
+                    <table class="table table-sm">
+                        <tbody>
+                            <tr>
+                                <td>Nome do Cliente:</td>
+                                <td><strong>{{login.cliente.nome}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Email do Cliente:</td>
+                                <td><strong>{{login.cliente.email}}</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Telefone:</td>
+                                <td><strong>{{login.cliente.telefone}}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 
@@ -19,7 +34,42 @@
                     <h6>Produtos</h6>
                 </div>
                 <div class="card-body">
-                    (...)
+
+                    <div>
+
+                        <div class="text-end">
+                            <h4>Total: <strong>{{cesta.total | currency : 'R$'}}</strong></h4>
+                        </div>
+
+                        <table class="table table-bordered mt-3">
+                            <thead>
+                                <tr>
+                                    <th>Foto</th>
+                                    <th>Nome do Item</th>
+                                    <th class="text-end">Preço</th>
+                                    <th class="text-end">Quantidade</th>
+                                    <th class="text-end">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of cesta.itens">
+                                    <td>
+                                        <img src="{{url}}{{item.foto}}" style="width: 50px;" />
+                                    </td>
+                                    <td>
+                                        {{item.nome}}
+                                        <br />
+                                        <small>{{item.categoria.nome}}</small>
+                                    </td>
+                                    <td class="text-end">{{item.precoDecimal | currency : 'R$'}}</td>
+                                    <td class="text-end">{{item.quantidade}}</td>
+                                    <td class="text-end">{{(item.precoDecimal * item.quantidade) | currency : 'R$'}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 
@@ -45,7 +95,7 @@
                                 <input type="text" class="form-control" name="logradouro"
                                     [(ngModel)]="endereco.logradouro" readonly />
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6" *ngIf="endereco.complemento">
                                 <label>Complemento:</label>
                                 <input type="text" class="form-control" name="complemento"
                                     [(ngModel)]="endereco.complemento" readonly />
@@ -55,29 +105,29 @@
                         <div class="row mt-3">
                             <div class="col-md-4">
                                 <label>Bairro:</label>
-                                <input type="text" class="form-control" name="bairro"
-                                    [(ngModel)]="endereco.bairro" readonly />
+                                <input type="text" class="form-control" name="bairro" [(ngModel)]="endereco.bairro"
+                                    readonly />
                             </div>
                             <div class="col-md-4">
                                 <label>Cidade:</label>
-                                <input type="text" class="form-control" name="cidade"
-                                    [(ngModel)]="endereco.localidade" readonly />
+                                <input type="text" class="form-control" name="cidade" [(ngModel)]="endereco.localidade"
+                                    readonly />
                             </div>
                             <div class="col-md-4">
                                 <label>Estado:</label>
-                                <input type="text" class="form-control" name="estado"
-                                    [(ngModel)]="endereco.uf" readonly />
+                                <input type="text" class="form-control" name="estado" [(ngModel)]="endereco.uf"
+                                    readonly />
                             </div>
                         </div>
 
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <label>Número:</label>
-                                <input type="text" class="form-control" name="numero" ngModel/>
+                                <input type="text" class="form-control" name="numero" ngModel />
                             </div>
                             <div class="col-md-9">
                                 <label>Referência:</label>
-                                <input type="text" class="form-control" name="referencia" ngModel/>
+                                <input type="text" class="form-control" name="referencia" ngModel />
                             </div>
                         </div>
 
@@ -86,12 +136,13 @@
                 </div>
             </div>
 
-            <div class="mt-3">
-                <input type="submit" class="btn btn-success" value="Finalizar Pedido" />
+            <div class="mt-3 mb-5">
+                <div class="d-grid">
+                    <input type="submit" class="btn btn-success" value="Finalizar Pedido" />
+                </div>
             </div>
 
         </div>
     </div>
 </form>
-
 
