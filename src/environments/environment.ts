@@ -1,5 +1,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://apirestaurante2-001-site1.ftempurl.com'
+  apiUrl: 'http://apirestaurante3-001-site1.itempurl.com'
 };

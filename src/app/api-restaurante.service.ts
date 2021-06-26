@@ -40,4 +40,14 @@ export class ApiRestauranteService {
   postLogin(cliente) {
     return this.httpClient.post(this.endpoint + "/login", cliente);
   }
+
+  getRelatorioPDF() {
+    return this.httpClient.get(this.endpoint + "/relatoriopdf",
+      { responseType: 'arraybuffer' });
+  }
+
+  getRelatorioEXCEL() {
+    return this.httpClient.get(this.endpoint + "/relatorioexcel",
+      { responseType: 'arraybuffer' });
+  }
 }

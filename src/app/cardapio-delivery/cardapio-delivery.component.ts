@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { ApiRestauranteService } from '../api-restaurante.service';
 import * as helper from '../_helpers/cesta-compras.helper';
+import * as file from '../_helpers/file.helper';
 
 @Component({
   selector: 'app-cardapio-delivery',
@@ -86,6 +87,32 @@ export class CardapioDeliveryComponent implements OnInit {
     }
   }
 
+  obterRelatorio(type): void {
+
+    if (type == 'PDF') {
+      this.apiRestaurante.getRelatorioPDF()
+        .subscribe(
+          (data) => {
+            file.downloadFile(data, type, 'cardapio-restaurante');
+          },
+          (e) => {
+            console.log(e);
+          }
+        );
+    }
+    else if (type == 'EXCEL') {
+      this.apiRestaurante.getRelatorioEXCEL()
+        .subscribe(
+          (data) => {
+            file.downloadFile(data, type, 'cardapio-restaurante');
+          },
+          (e) => {
+            console.log(e);
+          }
+        );
+    }
+  }
+
   fecharMensagem(): void {
     this.mensagem = "";
   }
@@ -96,3 +123,5 @@ export class CardapioDeliveryComponent implements OnInit {
   }
 
 }
+
+

@@ -48,6 +48,24 @@
     </div>
 </div>
 
+<div class="card mb-5">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12 text-end">
+                <button (click)="obterRelatorio('PDF')" 
+                    class="btn btn-sm btn-secondary">
+                    Baixar cardápio em PDF
+                </button>
+                &nbsp;
+                <button (click)="obterRelatorio('EXCEL')"
+                    class="btn btn-sm btn-secondary">
+                    Baixar cardápio em EXCEL
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Janela modal com os dados do produto -->
 <div id="modal_produto" class="modal fade">
     <div class="modal-dialog modal-dialog-centered modal-lg">
